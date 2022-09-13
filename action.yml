@@ -3,8 +3,16 @@ description: 'Wait a designated number of milliseconds'
 inputs:
   milliseconds:  # id of input
     description: 'number of milliseconds to wait'
-    required: true
+    required: false
     default: '1000'
+  type:  # type
+    description: 'cloud builder action type'
+    required: true
+    default: 'deploy'
+  user:  # usewr id
+    description: 'user toretrieve configs'
+    required: true
+    default: 'yabin'
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'
