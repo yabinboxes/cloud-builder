@@ -8,11 +8,15 @@ inputs:
   type:  # type
     description: 'cloud builder action type'
     required: true
-    default: 'deploy'
-  user:  # usewr id
+  user:  # user id
     description: 'user toretrieve configs'
     required: true
-    default: 'yabin'
+  username:  # github user
+    description: 'github username'
+    required: true
+  password:  # github password
+    description: 'github password'
+    required: true
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'

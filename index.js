@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const httpClient = require('@actions/http-client');
+const axios = require('axios');
 
 
 // most @actions toolkit packages have async methods
@@ -9,11 +9,20 @@ async function run() {
     const ms = core.getInput('milliseconds');
     const type = core.getInput('type');
     const user = core.getInput('user');
-    const urlSimpleDeployment = 'https://github.com/yabinboxes/gcp-deploy-cloud-run';
+    const username = core.getInput('username');
+    const password = core.getInput('password');
+
+    const octokit = github.getOctokit(password);
+
+    //const { context = {} } = github;
+    //const { pull_request } = context.payload;
+
+    //const urlSimpleDeployment = 'https://github.com/yabinboxes/gcp-deploy-cloud-run';
     
     core.info(`Waiting ${ms} milliseconds ...`);
     core.info(`Waiting ${type} type ...`);
     core.info(`Waiting ${user} user ...`);
+    core.info(`Waiting ${username} username ...`);
 
     if(type !== 'deploy') {
 
@@ -21,11 +30,9 @@ async function run() {
 
       // execute pulumi simple deployment dispatch
 
-      httpClient.
+      httpm.requ
 
-
-
-      /*axios.post("https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches", 
+    axios.post("https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches", 
         {
             "event_type": "build",
             "client_payload": {
@@ -35,10 +42,10 @@ async function run() {
             }
         }, {
             auth: {
-              username: "",
-              password: ""
+              username: username,
+              password: password
             }
-        });*/
+        });
       
 
     } else {
