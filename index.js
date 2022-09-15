@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+//const github = require('@actions/github');
 const axios = require('axios');
 
 
@@ -12,7 +12,7 @@ async function run() {
     const username = core.getInput('username');
     const password = core.getInput('password');
 
-    const octokit = github.getOctokit(password);
+    //const octokit = github.getOctokit(password);
 
     //const { context = {} } = github;
     //const { pull_request } = context.payload;
@@ -25,12 +25,12 @@ async function run() {
     core.info(`Waiting ${username} username ...`);
 
     if(type !== 'deploy') {
-
+      core.info(`Deploying ...`);
     } else if(type === 'deploy') {
 
       // execute pulumi simple deployment dispatch
 
-      httpm.requ
+    
 
     axios.post("https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches", 
         {
@@ -49,7 +49,7 @@ async function run() {
       
 
     } else {
-
+      core.info(`none ...`);
     }
 
     //console.log(JSON.stringify(github, null, "\t"));
