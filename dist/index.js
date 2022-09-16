@@ -7870,10 +7870,10 @@ async function run() {
             }
         })
         .then(function (response) {
-          console.log(response);
+          core.info(response);
         })
         .catch(function (error) {
-          console.log(error);
+          core.info(error);
         });
       
 
