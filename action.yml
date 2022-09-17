@@ -1,10 +1,6 @@
 name: 'Cloud Builder Pulumi'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
-    required: false
-    default: '1000'
   type:  # type
     description: 'cloud builder action type'
     required: true

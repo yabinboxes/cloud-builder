@@ -7822,68 +7822,105 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186);
-//const github = require('@actions/github');
 const axios = __nccwpck_require__(6545);
 
-
-// most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
+    //const ms = core.getInput('milliseconds');
     const type = core.getInput('type');
     const user = core.getInput('user');
     const username = core.getInput('username');
     const password = core.getInput('password');
+    //const orgName = core.getInput('org_name');
+    const projectName = core.getInput('project_name');
+    const repo = core.getInput('repo');
 
-    //const octokit = github.getOctokit(password);
+    //let typeValue = '';
+    //let uiCloudBuilderUrl = '';
 
-    //const { context = {} } = github;
-    //const { pull_request } = context.payload;
-
-    //const urlSimpleDeployment = 'https://github.com/yabinboxes/gcp-deploy-cloud-run';
-    
-    core.info(`Waiting ${ms} milliseconds ...`);
+    //core.info(`Waiting ${ms} milliseconds ...`);
     core.info(`Waiting ${type} type ...`);
     core.info(`Waiting ${user} user ...`);
-    core.info(`Waiting ${username} username ...`);
+    //core.info(`Waiting ${username} username ...`);
+    //core.info(`Waiting ${orgName} org name ...`);
+    core.info(`Waiting ${projectName} project name ...`);
+    core.info(`Waiting ${repo} repo ...`);
 
-    if(type !== 'deploy') {
-      core.info(`Deploying ...`);
-    } else if(type === 'deploy') {
+    axios.post('https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches',
+      {
+        "event_type": "build",
+        "client_payload": {
+          "unit": false,
+          "integration": true,
+          "repo": repo
+        }
+      }, {
+      auth: {
+        username: username,
+        password: password
+      }
+    })
+      .then(function (response) {
+        core.info(response);
+      })
+      .catch(function (error) {
+        core.info(error);
+      });
 
-      // execute pulumi simple deployment dispatch
+    /*if (type !== 'deploy') {
 
+      core.info(`not deploy...`);
+      // read ui cloud app builder to return type value url
+      axios.get(uiCloudBuilderUrl)
+      .then(function (response) {
+        typeValue = response;
+        core.info(response);
+      })
+      .catch(function (error) {
+        core.info(error);
+      });
+      
+     
+
+    } else */
     
+    /*if (type === 'deploy') {
 
-    axios.post("https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches", 
+      core.info(`deploy...`);
+      typeValue = 'https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches';
+
+    } 
+
+    // execute pulumi simple deployment dispatch
+    if(typeValue !== '')
+    {
+      axios.post(typeValue,
         {
-            "event_type": "build",
-            "client_payload": {
-                "unit": false,
-                "integration": true,
-                "repo": "yabinboxes/pulumi-backend"
-            }
+          "event_type": "build",
+          "client_payload": {
+            "unit": false,
+            "integration": true,
+            "repo": "yabinboxes/pulumi-backend"
+          }
         }, {
-            auth: {
-              username: username,
-              password: password
-            }
-        })
+        auth: {
+          username: username,
+          password: password
+        }
+      })
         .then(function (response) {
           core.info(response);
         })
         .catch(function (error) {
           core.info(error);
         });
-      
-
     } else {
-      core.info(`none ...`);
-    }
+      throw 'empty type value';
+    }*/
+    
 
-    //console.log(JSON.stringify(github, null, "\t"));
 
-   
+
   } catch (error) {
     core.setFailed(error.message);
   }
