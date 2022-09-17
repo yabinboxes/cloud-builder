@@ -5,7 +5,7 @@ inputs:
     description: 'cloud builder action type'
     required: true
   user:  # user id
-    description: 'user toretrieve configs'
+    description: 'user'
     required: true
   username:  # github user
     description: 'github username'
