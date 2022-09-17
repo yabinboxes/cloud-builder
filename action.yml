@@ -17,6 +17,15 @@ inputs:
   password:  # github password
     description: 'github password'
     required: true
+  org_name:  # github password
+    description: 'org name'
+    required: true
+  project_name:  # github password
+    description: 'project name'
+    required: true
+  repo:  # github password
+    description: 'repo'
+    required: true
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'
