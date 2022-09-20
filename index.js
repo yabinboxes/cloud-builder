@@ -13,7 +13,7 @@ async function run() {
     const projectName = core.getInput('projectname');
     const repo = core.getInput('repo');
 
-    //let typeValue = '';
+    let typeValue = '';
     //let uiCloudBuilderUrl = '';
 
     core.info(`Waiting ${type} type ...`);
@@ -25,6 +25,35 @@ async function run() {
 
     if (type !== 'deploy') {
       core.info(`Deploying ...`);
+
+      axios.get('/user?ID=12345')
+        .then(function (response) {
+          core.info(response);
+
+          // handle success
+          typeValue = response;
+    
+          axios.post("https://api.github.com/repos/" + typeValue + "/dispatches",
+            {
+              "event_type": "build",
+              "client_payload": {
+                "unit": false,
+                "integration": true,
+                "cloudRepoLocation": repo
+              }
+            }, {
+            auth: {
+              username: username,
+              password: password
+            }
+          });
+          
+        })
+        .catch(function (error) {
+          // handle error
+          core.info(error);
+        });
+
     } else if (type === 'deploy') {
 
       axios.post("https://api.github.com/repos/yabinboxes/gcp-deploy-cloud-run/dispatches",
@@ -33,7 +62,7 @@ async function run() {
           "client_payload": {
             "unit": false,
             "integration": true,
-            "repo": repo
+            "cloudRepoLocation": repo
           }
         }, {
         auth: {
