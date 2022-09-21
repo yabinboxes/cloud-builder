@@ -7855,14 +7855,13 @@ async function run() {
 
           // handle success
           typeValue = response;
-    
+
           axios.post("https://api.github.com/repos/" + typeValue + "/dispatches",
             {
               "event_type": "build",
               "client_payload": {
-                "unit": false,
-                "integration": true,
-                "cloudRepoLocation": repo
+                "cloudRepoLocation": username + '/' + repo,
+                "cloudRepo": repo
               }
             }, {
             auth: {
@@ -7870,7 +7869,7 @@ async function run() {
               password: password
             }
           });
-          
+
         })
         .catch(function (error) {
           // handle error
@@ -7883,9 +7882,8 @@ async function run() {
         {
           "event_type": "build",
           "client_payload": {
-            "unit": false,
-            "integration": true,
-            "cloudRepoLocation": repo
+            "cloudRepoLocation": username + '/' + repo,
+            "cloudRepo": repo
           }
         }, {
         auth: {
