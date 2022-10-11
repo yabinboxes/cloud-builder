@@ -26,9 +26,15 @@ async function run() {
 
 
     // request code pulumi code in base of type value
-    axios.get(`https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app/pulumi-endpoints/retrieve/${type}`)
+    axios.get(`https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app/pulumi-endpoints/retrieve/${type}/`)
         .then(function (response) {
+          console.log("responde 1 -> ", response);
           core.info("response -> ", response);
+          
+    })
+    .catch(function (error) {
+      // handle error
+      core.info("error-> ", error);
     });
 
     /*if (type !== 'deploy') {
