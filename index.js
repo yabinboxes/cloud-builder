@@ -23,7 +23,15 @@ async function run() {
     core.info(`Waiting ${projectName} project name ...`);
     core.info(`Waiting ${repo} repo ...`);
 
-    if (type !== 'deploy') {
+
+
+    // request code pulumi code in base of type value
+    axios.get('https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app')
+        .then(function (response) {
+          core.info(response);
+    });
+
+    /*if (type !== 'deploy') {
       core.info(`Deploying ...`);
 
       axios.get('/user?ID=12345')
@@ -37,8 +45,9 @@ async function run() {
             {
               "event_type": "build",
               "client_payload": {
-                "cloudRepoLocation": username + '/' + repo,
-                "cloudRepo": repo
+                "cloudRepoLocation": username + '/' + repository,
+                "cloudRepository": repository,
+                "appPort": 80,
               }
             }, {
             auth: {
@@ -59,8 +68,9 @@ async function run() {
         {
           "event_type": "build",
           "client_payload": {
-            "cloudRepoLocation": username + '/' + repo,
-            "cloudRepo": repo
+            "cloudRepoLocation": username + '/' + repository,
+            "cloudRepository": repository,
+            "appPort": 80
           }
         }, {
         auth: {
@@ -78,7 +88,7 @@ async function run() {
 
     } else {
       core.info(`none ...`);
-    }
+    }*/
 
 
 

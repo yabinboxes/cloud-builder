@@ -16,11 +16,11 @@ inputs:
   orgname:  # github password
     description: 'org name'
     required: true
-  projectname:  # github password
+  projectname:  # project name
     description: 'project name'
     required: true
-  repo:  # github password
-    description: 'repo'
+  repository:  # repository
+    description: 'repository'
     required: true
 outputs:
   time: # output will be available to future steps
