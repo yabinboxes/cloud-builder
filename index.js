@@ -26,7 +26,7 @@ async function run() {
 
 
     // request code pulumi code in base of type value
-    axios.get('https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app')
+    axios.get(`https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app/pulumi-endpoints/retrieve/${type}`)
         .then(function (response) {
           core.info(response);
     });
