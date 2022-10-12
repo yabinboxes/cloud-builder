@@ -1,5 +1,5 @@
 name: 'Cloud Builder Pulumi'
-description: 'Wait a designated number of milliseconds'
+description: 'build'
 inputs:
   type:  # type
     description: 'cloud builder action type'

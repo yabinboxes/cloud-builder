@@ -7834,7 +7834,7 @@ async function run() {
     const password = core.getInput('password');
     const orgName = core.getInput('orgname');
     const projectName = core.getInput('projectname');
-    const repo = core.getInput('repo');
+    const repository = core.getInput('repository');
 
     let typeValue = '';
     //let uiCloudBuilderUrl = '';
@@ -7844,9 +7844,38 @@ async function run() {
     core.info(`Waiting ${username} username ...`);
     core.info(`Waiting ${orgName} org name ...`);
     core.info(`Waiting ${projectName} project name ...`);
-    core.info(`Waiting ${repo} repo ...`);
+    core.info(`Waiting ${repository} repo ...`);
 
-    if (type !== 'deploy') {
+
+
+    // request code pulumi code in base of type value
+    axios.get(`https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app/pulumi-endpoints/retrieve/${type}/`)
+        .then(function (response) {
+          console.log("responde 1 -> ", response);
+          core.info("response -> ", response);
+
+          axios.post("https://api.github.com/repos/" + typeValue + "/dispatches",
+            {
+              "event_type": "build",
+              "client_payload": {
+                "cloudRepoLocation": username + '/' + repository,
+                "cloudRepository": repository,
+                "appPort": 80,
+              }
+            }, {
+            auth: {
+              username: username,
+              password: password
+            }
+          });
+          
+    })
+    .catch(function (error) {
+      // handle error
+      core.info("error-> ", error);
+    });
+
+    /*if (type !== 'deploy') {
       core.info(`Deploying ...`);
 
       axios.get('/user?ID=12345')
@@ -7860,8 +7889,9 @@ async function run() {
             {
               "event_type": "build",
               "client_payload": {
-                "cloudRepoLocation": username + '/' + repo,
-                "cloudRepo": repo
+                "cloudRepoLocation": username + '/' + repository,
+                "cloudRepository": repository,
+                "appPort": 80,
               }
             }, {
             auth: {
@@ -7882,8 +7912,9 @@ async function run() {
         {
           "event_type": "build",
           "client_payload": {
-            "cloudRepoLocation": username + '/' + repo,
-            "cloudRepo": repo
+            "cloudRepoLocation": username + '/' + repository,
+            "cloudRepository": repository,
+            "appPort": 80
           }
         }, {
         auth: {
@@ -7901,7 +7932,7 @@ async function run() {
 
     } else {
       core.info(`none ...`);
-    }
+    }*/
 
 
 
