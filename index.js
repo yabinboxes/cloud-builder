@@ -13,7 +13,7 @@ async function run() {
     const projectName = core.getInput('projectname');
     const repository = core.getInput('repository');
 
-    let typeValue = '';
+    //let typeValue = '';
     //let uiCloudBuilderUrl = '';
 
     core.info(`Waiting ${type} type ...`);
@@ -28,10 +28,10 @@ async function run() {
     // request code pulumi code in base of type value
     axios.get(`https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app/pulumi-endpoints/retrieve/${type}/`)
         .then(function (response) {
-          console.log("responde 1 -> ", response);
-          core.info("response -> ", response);
+          console.log("responde 1 -> ", response.data);
+          core.info("response -> ", response.data);
 
-          axios.post("https://api.github.com/repos/" + typeValue + "/dispatches",
+          axios.post("https://api.github.com/repos/" + response.data + "/dispatches",
             {
               "event_type": "build",
               "client_payload": {
