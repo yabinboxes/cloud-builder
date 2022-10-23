@@ -28,7 +28,11 @@ async function run() {
             {
               "event_type": "build",
               "client_payload": {
-                "cloudRepoLocation": repoLocation
+                "username": username,
+                "environment": environment,
+                "repoLocation": repoLocation,
+                "orgName": orgName,
+                "projectName": projectName
               }
             }, {
             auth: {
