@@ -4,24 +4,24 @@ inputs:
   type:  # type
     description: 'cloud builder action type'
     required: true
-  user:  # user id
-    description: 'user'
-    required: true
   username:  # github user
     description: 'github username'
     required: true
-  password:  # github password
-    description: 'github password'
+  environment:  # stage, prod
+    description: 'environment'
     required: true
-  orgname:  # github password
-    description: 'org name'
+  repo-location:  # repo location
+    description: 'repo location'
     required: true
-  projectname:  # project name
+  org-name:  # organization name
+    description: 'organization name'
+    required: true
+  project-name:  # project name
     description: 'project name'
     required: true
-  repository:  # repository
-    description: 'repository'
-    required: true
+  github-token:  # github token
+    description: 'github token'
+    required: false
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'
