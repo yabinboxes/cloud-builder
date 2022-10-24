@@ -32,7 +32,8 @@ async function run() {
                 "environment": environment,
                 "repoLocation": repoLocation,
                 "orgName": orgName,
-                "projectName": projectName
+                "projectName": projectName,
+                "githubToken": githubToken 
               }
             }, {
             auth: {
