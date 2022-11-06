@@ -7835,15 +7835,20 @@ async function run() {
     const orgName = core.getInput('org-name');
     const projectName = core.getInput('project-name');
     const githubToken= core.getInput('github-token');
+    const command = core.getInput('command');
+    const appName = core.getInput('app-name');
+    const urlEndpoint = core.getInput('url-endpoint');
+
 
     core.info(`Waiting ${type} type ...`);
     core.info(`Waiting ${username} username ...`);
     core.info(`Waiting ${orgName} org name ...`);
     core.info(`Waiting ${projectName} project name ...`);
+    core.info(`Waiting ${appName} project name ...`);
     
-
+    //https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app
     // request code pulumi code in base of type value
-    axios.get(`https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app/pulumi-endpoints/retrieve/${type}/`)
+    axios.get(`${urlEndpoint}/pulumi-endpoints/retrieve/${type}/`)
         .then(function (response) {
 
           core.info("response -> ", response.data);
@@ -7856,7 +7861,9 @@ async function run() {
                 "repoLocation": repoLocation,
                 "orgName": orgName,
                 "projectName": projectName,
-                "githubToken": githubToken 
+                "githubToken": githubToken,
+                "command": command,
+                "appName": appName
               }
             }, {
             auth: {
