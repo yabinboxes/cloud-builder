@@ -7838,6 +7838,7 @@ async function run() {
     const command = core.getInput('command');
     const appName = core.getInput('app-name');
     const urlEndpoint = core.getInput('url-endpoint');
+    const metadata = core.getInput('metadata');
 
 
     core.info(`Waiting ${type} type ...`);
@@ -7845,6 +7846,8 @@ async function run() {
     core.info(`Waiting ${orgName} org name ...`);
     core.info(`Waiting ${projectName} project name ...`);
     core.info(`Waiting ${appName} project name ...`);
+    core.info(`Waiting metadata -> ${metadata}`);
+
     
     //https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app
     // request code pulumi code in base of type value

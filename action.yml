@@ -4,27 +4,21 @@ inputs:
   type:  # type
     description: 'cloud builder action type'
     required: true
-    default: ''
   username:  # github user
     description: 'github username'
     required: true
-    default: 'no-user'
   environment:  # stage, prod
     description: 'environment'
     required: true
-    default: 'local'
   repo-location:  # repo location
     description: 'repo location'
     required: true
-    default: 'empty'
   org-name:  # organization name
     description: 'organization name'
     required: true
-    default: 'empty'
   project-name:  # project name
     description: 'project name'
     required: true
-    default: 'empty'
   command:
     description: 'command up/destroy/preview'
     required: false
@@ -32,13 +26,15 @@ inputs:
   app-name:
     description: 'application name'
     required: true
-    default: 'empty-name' 
   url-endpoint:
     description: 'url endpoint'
     required: false
     default: ''
   github-token:  # github token
     description: 'github token'
+    required: true
+  metadata: # dynamic data
+    description: 'dynamic metadata'
     required: false
 outputs:
   time: # output will be available to future steps
