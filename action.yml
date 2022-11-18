@@ -7,17 +7,14 @@ inputs:
   username:  # github user
     description: 'github username'
     required: true
+  email: # email
+    description: 'email'
+    required: true
   environment:  # stage, prod
     description: 'environment'
     required: true
   repo-location:  # repo location
     description: 'repo location'
-    required: true
-  org-name:  # organization name
-    description: 'organization name'
-    required: true
-  project-name:  # project name
-    description: 'project name'
     required: true
   command:
     description: 'command up/destroy/preview'
