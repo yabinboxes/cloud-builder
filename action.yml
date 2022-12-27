@@ -33,6 +33,7 @@ inputs:
   metadata: # dynamic data
     description: 'dynamic metadata'
     required: false
+    default: '{ }' 
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'
