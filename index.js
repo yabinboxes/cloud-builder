@@ -23,7 +23,7 @@ async function run() {
     
     //https://my-app-2-admin-rlxbkxmq4a-uc.a.run.app
     // request code pulumi code in base of type value
-      axios.get(`${urlEndpoint}/gitlab-mapping/retrieve/${type}/${email}`)
+      axios.get(`${urlEndpoint}/mapping/retrieve/${type}/${email}`)
         .then(function (response) {
 
 
